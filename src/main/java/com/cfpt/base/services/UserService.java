@@ -5,7 +5,7 @@ import com.cfpt.base.modal.User;
  */
 public interface UserService {
 
-    public int insert();
+    public int insert(User user);
 
     public User findByUserName(String username);
 

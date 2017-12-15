@@ -1,45 +1,38 @@
 package com.cfpt.base.controller;
 
-import com.cfpt.base.modal.User;
-import com.cfpt.base.services.UserService;
+import com.cfpt.base.modal.Company;
+import com.cfpt.base.services.CompanyService;
 import com.cfpt.base.utils.JsonResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Created by dl on 2017-12-15.
  */
 @Controller
-@RequestMapping(value = "/users")
-public class UserController {
+@RequestMapping(value = "/company")
+public class CompanyController {
 
     @Autowired
-    private UserService userService;
+    private CompanyService companyService;
 
 
-    @ApiOperation(value = "创建用户", notes = "根据User对象创建用户")
-    @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+    @ApiOperation(value = "创建用户", notes = "根据company对象创建用户")
+    @ApiImplicitParam(name = "company", value = "用户详细实体company", required = true, dataType = "Company")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add(@RequestBody User user) {
-        if (("".equals(user.getUsername())) || user.getUsername() == null)
+    public JsonResult add(@RequestBody Company company) {
+        if (("".equals(company.getUsername())) || company.getUsername() == null)
             return JsonResult.<String>builder().error("用户名不能为空").build();
-        User _user = userService.findByUserName(user.getUsername());
-        if(_user !=null)return JsonResult.<String>builder().error("用户已存在!").build();
-        user.setSex("男".equals(user.getSex())?"1":user.getSex());
-        user.setSex("女".equals(user.getSex())?"2":user.getSex());
+        Company _company = companyService.findByUserName(company.getUsername());
+        if(_company !=null)return JsonResult.<String>builder().error("用户已存在!").build();
         try{
-            userService.insert(user);
+            companyService.insert(company);
         }catch (Exception e){
             return JsonResult.<String>builder().error(e.getMessage()).build();
         }
@@ -51,8 +44,8 @@ public class UserController {
     @GetMapping(value = "/isExisUserName/{username}")
     @ResponseBody
     public JsonResult isExisUserName(@PathVariable("username") String username) {
-        User user = userService.findByUserName(username);
-        return user == null ? JsonResult.<String>builder().error("不存在").build() : JsonResult.<String>builder().data("").build();
+        Company company = companyService.findByUserName(username);
+        return company == null ? JsonResult.<String>builder().error("不存在").build() : JsonResult.<String>builder().data("").build();
 
     }
 
@@ -62,11 +55,11 @@ public class UserController {
     @ResponseBody
     public JsonResult findByUserName(@PathVariable("username") String username) {
         System.out.println(username);
-        User user = userService.findByUserName(username);
-        if (user == null)
+        Company company = companyService.findByUserName(username);
+        if (company == null)
             return JsonResult.<String>builder().error("用户不存在").build();
-        user.setPassword("");
-        return JsonResult.<User>builder().data(user).build();
+        company.setPassword("");
+        return JsonResult.<Company>builder().data(company).build();
     }
 
     @ApiOperation(value = "用户登录", notes = "用户登录")
@@ -75,10 +68,10 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public JsonResult login(@RequestParam String username, @RequestParam String password) {
-        User user = userService.findByUserName(username);
-        if (user == null) return JsonResult.builder().error("用户不存在!").build();
-        if (!user.getPassword().equals(password)) return JsonResult.builder().error("密码错误!").build();
-        user.setPassword("");
-        return JsonResult.<User>builder().build();
+        Company company = companyService.findByUserName(username);
+        if (company == null) return JsonResult.builder().error("用户不存在!").build();
+        if (!company.getPassword().equals(password)) return JsonResult.builder().error("密码错误!").build();
+        company.setPassword("");
+        return JsonResult.<Company>builder().build();
     }
 }

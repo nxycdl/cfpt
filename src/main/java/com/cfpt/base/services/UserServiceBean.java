@@ -14,8 +14,8 @@ public class UserServiceBean implements UserService{
     @Autowired
     private UserMapper userMapper;
     @Override
-    public int insert() {
-        return 0;
+    public int insert(User user) {
+        return userMapper.insert(user);
     }
 
     @Override

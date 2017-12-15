@@ -3,22 +3,19 @@ package com.cfpt.base.modal;
 import java.io.Serializable;
 
 /**
- * Created by dl on 2017-12-15.
+ * Created by Administrator on 2017-12-15.
  */
-public class User implements Serializable{
+public class Company implements Serializable {
 
-    private Long id ;
+    private Long id;
     private String username;
-    private String password;
-    private String sex;
     private String name;
-    private String usertype;
-    private String tel;
+    private String password;
+    private String qyfr;
+    private String lxdh;
     private String address;
     private String email;
     private String lxr;
-    private String khyh;
-    private String yhzh;
     private String is_enabled;
 
     public Long getId() {
@@ -37,22 +34,6 @@ public class User implements Serializable{
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
     public String getName() {
         return name;
     }
@@ -61,20 +42,28 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public String getUsertype() {
-        return usertype;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getTel() {
-        return tel;
+    public String getQyfr() {
+        return qyfr;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setQyfr(String qyfr) {
+        this.qyfr = qyfr;
+    }
+
+    public String getLxdh() {
+        return lxdh;
+    }
+
+    public void setLxdh(String lxdh) {
+        this.lxdh = lxdh;
     }
 
     public String getAddress() {
@@ -99,22 +88,6 @@ public class User implements Serializable{
 
     public void setLxr(String lxr) {
         this.lxr = lxr;
-    }
-
-    public String getKhyh() {
-        return khyh;
-    }
-
-    public void setKhyh(String khyh) {
-        this.khyh = khyh;
-    }
-
-    public String getYhzh() {
-        return yhzh;
-    }
-
-    public void setYhzh(String yhzh) {
-        this.yhzh = yhzh;
     }
 
     public String getIs_enabled() {

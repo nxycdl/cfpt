@@ -30,7 +30,7 @@ public class JsonResult<T> {
     }
 
     public String getError() {
-        return error;
+        return error == null ? "" : error;
     }
 
     @Override
