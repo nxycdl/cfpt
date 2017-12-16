@@ -13,7 +13,7 @@ public class Orders {
     private String orderid;
     private String caption;
     private String content;
-    private String status;
+    private String flg;
     private BigDecimal amount;
     private String evaluate;
     private String complaint;
@@ -66,12 +66,12 @@ public class Orders {
         this.content = content;
     }
 
-    public String getStatus() {
-        return status;
+    public String getFlg() {
+        return flg;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFlg(String flg) {
+        this.flg = flg;
     }
 
     public BigDecimal getAmount() {

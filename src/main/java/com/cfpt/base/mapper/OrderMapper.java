@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper
 public interface OrderMapper {
-    String insertSql = "insert into `orders`(add_time, companyid,  orderid, caption, content, status, amount,status)" +
-            "values(sysdate(), #{companyid},#{orderid}, #{caption}, #{content}, #{status}, #{amount},0)";
+    String insertSql = "insert into `orders`(add_time, companyid,  orderid, caption, content, flg, amount)" +
+            "values(sysdate(), #{companyid},#{orderid}, #{caption}, #{content}, #{flg}, #{amount})";
 
     @Insert(insertSql)
     int insert(Orders orders);

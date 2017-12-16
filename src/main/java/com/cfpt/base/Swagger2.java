@@ -31,7 +31,7 @@ public class Swagger2 {
         return new ApiInfoBuilder()
                 .title("创扶平台API接口")
                 .description("创扶平台API接口")
-                .termsOfServiceUrl("http://blog.didispace.com/")
+                .termsOfServiceUrl("http://localhost/swagger-ui.html")
                 .contact("邓亮")
                 .version("1.0")
                 .build();

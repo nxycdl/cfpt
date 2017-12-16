@@ -49,6 +49,7 @@ public class OrderController {
         orders.setCaption(caption);
         orders.setContent(content);
         orders.setAmount(amount);
+        orders.setFlg("0");
         orders.setOrderid(DateUtils.Y2NO_FORMAT.format(new Date()) + StringUtils.randomNumStr(4));
         try {
             orderService.insert(orders);
@@ -69,7 +70,7 @@ public class OrderController {
         if (user==null) return JsonResult.builder().error("用户信息不存在").build();
         Orders orders = orderService.findByOrderid(orderid);
         if (orders==null) return JsonResult.builder().error("订单数据不存在").build();
-        if(!"0".equals(orders.getStatus())) return JsonResult.builder().error("订单状态不正确,请重新申请订单").build();
+        if(!"0".equals(orders.getFlg())) return JsonResult.builder().error("订单状态不正确,请重新申请订单").build();
         try{
             orderService.setOrders(user.getId(),orders.getId());
         }catch (Exception e){
